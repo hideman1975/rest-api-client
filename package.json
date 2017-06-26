@@ -1,0 +1,66 @@
+{
+  "name": "boilerplate-webpack-react",
+  "version": "0.2.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node node_modules/karma/bin/karma start karma.conf.js",
+    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "webpack": "node ./node_modules/webpack/bin/webpack.js"
+  },
+  "dependencies": {
+    "babel": "^5.1.11",
+    "babel-core": "^5.1.11",
+    "babel-loader": "^5.0.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "css-loader": "^0.9.1",
+    "del": "^1.1.1",
+    "extract-text-webpack-plugin": "^0.3.8",
+    "file-loader": "^0.8.1",
+    "file-saver": "^1.3.3",
+    "flow-bin": "^0.6.0",
+    "good": "^5.1.0",
+    "good-console": "^4.1.0",
+    "gulp": "^3.8.11",
+    "gulp-replace": "^0.5.0",
+    "gulp-util": "^3.0.2",
+    "hapi": "^8.4.0",
+    "image-webpack-loader": "^1.3.1",
+    "jsx-loader": "^0.12.2",
+    "lodash.isplainobject": "^4.0.6",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "react-hot-loader": "^1.2.5",
+    "react-redux": "^4.4.1",
+    "redux": "^3.6.0",
+    "redux-logger": "^2.7.4",
+    "redux-promise-middleware": "^4.2.0",
+    "redux-thunk": "^2.2.0",
+    "run-sequence": "^1.0.2",
+    "style-loader": "^0.8.2",
+    "stylus": "^0.50.0",
+    "stylus-loader": "^1.0.0",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "devDependencies": {
+    "axios": "^0.9.1",
+    "karma": "^0.12.32",
+    "karma-chrome-launcher": "^0.1.7",
+    "karma-mocha": "^0.1.10",
+    "karma-webpack": "^1.5.0",
+    "mocha": "^2.1.0",
+    "should": "^5.2.0"
+  },
+  "author": "Andrew Manaenko",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:hideman1975/gaz_test.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ]
+}

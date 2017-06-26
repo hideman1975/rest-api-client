@@ -1,0 +1,293 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+/*@media*/
+@media screen and (max-width: 500px){
+       .logo {
+            display: none;
+            color: red;
+        }
+	}
+
+@media screen and (orientation: landscape){
+	p{color: blue;}
+	}
+
+.table{
+    border: 2px double black;
+    color: black;
+	width: 80%;
+    height: 100%;
+	max-width: 600px;
+    margin-left: 5%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.diskList{
+    width: 90%;
+    background: #e84bb2;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border: 4px double black;
+
+}
+
+
+.tab {
+    border: 2px double black;
+    background: #7de880;
+    max-width: 100px;
+    cursor: pointer;
+}
+
+body {
+    background: #8bcc26;
+	min-width: 400px;
+    min-height: 100%;
+    height: 100%;
+    overflow: scroll;
+}
+
+
+.fotoCont {
+    float: left;
+    width: 32%;
+    height: 30%;
+    margin: 7px 2px 7px 2px;
+
+}
+
+.fotoCont img{
+    width: 100%;
+    height: auto;
+}
+
+.mainmenu{
+    background: #0099FF;
+    width: 94%;
+    margin-left: 10px;
+	height: 60px;
+}
+
+.menuitem{
+
+    width: 18%;
+    height: 90%;
+    float: left;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.menuitemActive{
+
+    width: 18%;
+    height: 90%;
+    float: left;
+    display: inline-block;
+    cursor: default;  /* устанавливаем курсор в виде стрелки */
+    background: rgba(0,0,0,.3);
+
+}
+
+
+
+
+.menuLabel{
+    height: 90%;
+    width: auto;
+    margin: 7px 7px 7px 7px;
+
+}
+
+.menuitem:hover{
+    background: rgba(0,0,0,.3);
+}
+
+.tab:hover{
+    background: rgba(0,0,0,.3);
+
+}
+.menuitem:hover::after {
+    content: attr(data-title);
+    position: absolute; /* Абсолютное позиционирование */
+    /*left: 20%; top: 30%; !* Положение подсказки *!*/
+    z-index: 1; /* Отображаем подсказку поверх других элементов */
+    background: rgba(255,255,230,0.9); /* Полупрозрачный цвет фона */
+    font-family: Arial, sans-serif; /* Гарнитура шрифта */
+    font-size: 11px; /* Размер текста подсказки */
+    padding: 5px 10px; /* Поля */
+    border: 1px solid #333; /* Параметры рамки */
+}
+
+.menuitemActive:hover::after {
+    content: attr(data-title);
+    position: absolute; /* Абсолютное позиционирование */
+    /*left: 20%; top: 30%; !* Положение подсказки *!*/
+    z-index: 1; /* Отображаем подсказку поверх других элементов */
+    background: rgba(255,255,230,0.9); /* Полупрозрачный цвет фона */
+    font-family: Arial, sans-serif; /* Гарнитура шрифта */
+    font-size: 11px; /* Размер текста подсказки */
+    padding: 5px 10px; /* Поля */
+    border: 1px solid #333; /* Параметры рамки */
+}
+
+
+.week {
+   margin-left: 10px;
+   font-size: 14px;
+   width: 100%;
+}
+
+.blog{
+    border:1px solid #000;
+    margin-left: 20px;
+    margin-top: 20px;
+	margin-right: 20px;
+    padding: 10px;
+	max-width: 600px;
+	font-size: 1.2em;
+    background-color: #7de880;
+}
+
+
+.contacts{
+    border:1px solid #000;
+    width: 90%;
+    background-color: #7de880;
+    margin-left: 20px;
+    margin-top: 20px;
+	margin-right: 20px;
+    padding: 10px;
+}
+
+.news{
+    border:1px solid #000;
+    width: 90%;
+    background-color: #7de880;
+    margin-left: 20px;
+    margin-top: 20px;
+	margin-right: 20px;
+    padding: 10px;
+}
+
+.fotos{
+    border:1px solid #000;
+    width: 98%;
+    background-color: #7de880;
+    margin-left: 7px;
+    margin-top: 20px;
+	margin-right: 7px;
+    float: left;
+    cursor: pointer;
+}
+
+.dayDiv{
+
+   min-width: 440px;
+
+}
+
+.caruselControl{
+    float: left;
+    height: 370px;
+    width: 35px;
+    background-color: #7de880;
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 11px;
+    cursor: pointer;
+}
+
+.arrow{
+    width: 20px;
+    height: 20px;
+    margin-top: 150px;
+
+}
+
+.dayShedule{
+    float: left;
+}
+
+.activePage{
+
+    vertical-align: top;
+    display: block;
+}
+
+.passivePage{
+    display: none;
+
+}
+
+.header{
+    width: 100%;
+    margin: 7px 7px 7px 7px;
+}
+
+.logo{
+    width: 100%;
+    height: auto;
+}
+
+.logo img{
+    width: 94%;
+    height: auto;
+}
+
+.loginForm{
+    height: 40px;
+    display: inline;
+    overflow : hidden;
+    white-space: nowrap;
+}
+
+.loginForm input{
+    color: red;
+    border-radius: 11px;
+    text-align: center;
+    margin-left: 15px;
+    font-size: 12pt;
+    width: 7em;
+}
+
+.loginForm button{
+    border-radius: 10px;
+    width: 70px;
+
+}
+
+.editbox{
+    border: 2px double black;
+    background-color: #ffff4f;
+    /*float: left;*/
+    /*margin: 10px 20px 10px 10px ;*/
+    padding: 10px 20px 10px 10px ;
+    position: fixed; /* Абсолютное позиционирование */
+    bottom: 15px;
+    right: 15px; /* Положение от правого края *!*/
+
+}
+
+.selected
+{
+    background-color: rgba(33, 42, 33, 0.55);
+}
+
+button {
+    background-color: #7889ff;
+    margin-left: 7px;
+}
+
+.button {
+    background-color: #7889ff;
+    margin-left: 7px;
+}
+
+.fotoScan{
+    width: 150px;
+    height: auto;
+}
