@@ -3,9 +3,10 @@
  */
 import React from 'react';
 import store from '../store';
-import {selectDisk} from '../actions/clientsActions';
-import {setActiveDisk} from '../actions/clientsActions';
-
+import {selectDirector} from '../actions/clientsActions';
+import {setActiveDirector} from '../actions/clientsActions';
+import {getAllDisksFromBase} from '../actions/clientsActions';
+import {getDisksByDirector} from '../ajaxCommander';
 
 export default class Director extends React.Component{
 
@@ -22,20 +23,25 @@ export default class Director extends React.Component{
 // При выборе клиента в списке меняем в Сторе форму редактирования
     clickMeTender(){
         console.log("Ткнули в директора-", this.props.index);
-        //store.dispatch(setActiveDisk(this.props.disk));
-        //store.dispatch(selectDisk(this.props.index));
-        //var i = store.getState()["selectedDisk"]; //делаем сдвиг индекса
-        //store.dispatch(setActiveDisk(store.getState()["AllDisks"][i]));
+        store.dispatch(setActiveDirector(this.props.director));
+        store.dispatch(selectDirector(this.props.index));
+
+        var filteredDisks = getDisksByDirector(this.props.director.id);
+        setTimeout(function (){console.log("filteredDisks",filteredDisks.length)}, 100);
+        store.dispatch(getAllDisksFromBase(filteredDisks));
+
+        //var i = store.getState()["selectedDirector"]; //делаем сдвиг индекса
+        //store.dispatch(setActiveDirector(store.getState()["AllDirectors"][i]));
     }
 
 
 
     render(){
         var ClassName;
-        //if(this.props.disk.id == store.getState()["activeDisk"].id){
-          //  ClassName = "selected";
-        //} else  ClassName = "tab";
-        ClassName = "tab";
+        if(this.props.director.id == store.getState()["activeDirector"].id){
+           ClassName = "selected";
+        } else  ClassName = "tab";
+
         return(
 
             <tr className={ClassName} onClick={this.clickMeTender.bind(this)}>

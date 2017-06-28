@@ -267,8 +267,8 @@ body {
     /*margin: 10px 20px 10px 10px ;*/
     padding: 10px 20px 10px 10px ;
     position: fixed; /* Абсолютное позиционирование */
-    bottom: 15px;
-    right: 15px; /* Положение от правого края *!*/
+    bottom: 10px;
+    left: 10px; /* Положение от правого края *!*/
 
 }
 

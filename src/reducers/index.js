@@ -3,9 +3,14 @@
 export default function(state, action) {
 //Пишем редьюсеры для Бюро Проката дисков
     if (action.type === 'ADD_DISKS') return {...state, AllDisks: action.AllDisks};
+    if (action.type === 'ADD_DIRECTORS') return {...state, AllDirectors: action.AllDirectors};
+
     if (action.type === 'SELECT_DISK') return {...state, selectedDisk: action.diskId};
-   
+    if (action.type === 'SELECT_DIRECTOR') return {...state, selectedDirector: action.directorId};
+
     if (action.type === 'ACTIVE_DISK') return {...state, activeDisk: action.disk};
+    if (action.type === 'ACTIVE_DIRECTOR') return {...state, activeDirector: action.director};
+
     if (action.type === 'TITLE_CHANGE')
         return {...state, activeDisk: {...action.activeDisk, title: action.title}};
     if (action.type === 'GENRE_CHANGE')

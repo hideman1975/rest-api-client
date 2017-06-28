@@ -12,7 +12,10 @@ import reducers from './reducers/index';
 var initialState = {
     AllDisks: [],
     selectedDisk: 0,
-    activeDisk: null
+    activeDisk: null,
+    AllDirectors:[],
+    selectedDirector: 0,
+    activeDirector: null
         
 
 };

@@ -20,8 +20,7 @@ export default class DirectorList extends React.Component{
         var directorIndex = 0;
         AllDirectors = this.props.AllDirectors;
 
-        return<div className="diskList">
-            <table className="table dayShedule">
+        return   <table className="table dayShedule">
                 <tbody>
                 <tr>
                     <th>&nbsp;</th><th>Имя</th>
@@ -31,9 +30,7 @@ export default class DirectorList extends React.Component{
                     <Disk key = {msg.id} director={msg} index={directorIndex++}/>)}
                 </tbody>
             </table>
-            
-        </div>
-
+     
     }
     render(){
 

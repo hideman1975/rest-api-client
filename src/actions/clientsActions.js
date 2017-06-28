@@ -9,6 +9,18 @@ export function getAllDisksFromBase(AllDisks) {
 
     };
 }
+
+export const ADD_DIRECTORS = 'ADD_DIRECTORS';
+
+export function getAllDirectorsFromBase(AllDirectors) {
+
+    return {
+        type: ADD_DIRECTORS,
+        AllDirectors: AllDirectors
+
+    };
+}
+
 export const SELECT_DISK = 'SELECT_DISK';
 
 export function selectDisk(diskId) {
@@ -17,6 +29,18 @@ export function selectDisk(diskId) {
 
         type: SELECT_DISK,
         diskId: diskId
+
+    };
+}
+
+export const SELECT_DIRECTOR = 'SELECT_DIRECTOR';
+
+export function selectDirector(directorId) {
+
+    return {
+
+        type: SELECT_DIRECTOR,
+        directorId: directorId
 
     };
 }
@@ -32,6 +56,19 @@ export function setActiveDisk(disk) {
 
     };
 }
+
+export const ACTIVE_DIRECTOR = 'ACTIVE_DIRECTOR';
+
+export function setActiveDirector(director) {
+
+    return {
+
+        type: ACTIVE_DIRECTOR,
+        director: director
+
+    };
+}
+
 export const ID_CHANGE = 'ID_CHANGE';
 export function editId(id, activeDisk) {
 
