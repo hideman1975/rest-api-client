@@ -1,82 +1,54 @@
 
 import React from 'react';
 import DisksList from './disksList';
-import DirectorList from './directorList';
+import ClientList from './clientList';
 import store from '../store';
 import { connect } from 'react-redux';
-import {getAllDisksFromBase} from '../actions/clientsActions';
-import {getAllDirectorsFromBase} from '../actions/clientsActions';
-import {getAllDisks} from '../ajaxCommander';
-import {getDisksByDirector} from '../ajaxCommander';
-//import {saveDisk} from '../ajaxCommander';
-import {selectDisk} from '../actions/clientsActions';
-import {setActiveDisk} from '../actions/clientsActions';
-import {setActiveDirector} from '../actions/clientsActions';
-//import {setPrevDisk} from '../actions/clientsActions';
-//import {setNextDisk} from '../actions/clientsActions';
 
-import {getAllDirectors} from '../ajaxCommander';
+import {getAllClientsFromBase, setActiveClient} from '../actions/clientActions';
+import {getDisksByClient, getAllClients} from '../ajaxCommander';
+import {selectDisk, setActiveDisk, getAllDisksFromBase} from '../actions/diskActions';
 
-//Инициализация дисков
-var allDisks = getAllDisks();
-var filteredDisks = getDisksByDirector(5);
+const filteredDisks = getDisksByClient(1);
 
-setTimeout(function (){console.log("filteredDisks",filteredDisks.length)}, 100);
+//Инициализация клиентов
+var allClients = getAllClients();
+store.dispatch(getAllClientsFromBase(allClients));
+var activeClient = store.getState()["AllClients"][0];
+store.dispatch(setActiveClient(activeClient));
+
+//setTimeout(function (){console.log("filteredDisks",filteredDisks.length)}, 100);
 store.dispatch(getAllDisksFromBase(filteredDisks));
-var index = store.getState()["selectedDisk"]; //делаем сдвиг индекса
-var activeDisk = store.getState()["AllDisks"][index];
+var activeDisk = store.getState()["AllDisks"][0];
 store.dispatch(setActiveDisk(activeDisk));
-
-//Инициализация директоров
-var allDirectors = getAllDirectors();
-setTimeout(function (){console.log("allDirectors",allDirectors.length)}, 100);
-store.dispatch(getAllDirectorsFromBase(allDirectors));
-var dirIndex = store.getState()["selectedDirector"]; //делаем сдвиг индекса
-var activeDirector = store.getState()["AllDirectors"][dirIndex];
-console.log("Активный директор",activeDirector);
-store.dispatch(setActiveDirector(activeDirector));
 
 class App extends React.Component{
 
-
     render(){
-        var indexSelectedDisk = this.props.selectedDisk;
-        //console.log("Выбранный диск",allDisks[indexSelectedDisk]);
         return(
 
             <div>
-                <h2>Список фильмов</h2>
-                <DirectorList AllDirectors={this.props.allDirectors}
-                              selectedDirector = {this.props.selectedDirector}
-                              activeDirector = {this.props.activeDirector}
+                <h2>Клиенты проката</h2>
+                <ClientList AllClients={this.props.allClients}
+                            activeClient = {this.props.activeClient}
+                            allDisks={this.props.allDisks}
+                            activeDisk = {this.props.activeDisk}
                 />
-                <DisksList AllDisks={this.props.allDisks}
-                           selectedDisk = {this.props.selectedDisk}
-                           activeDisk = {this.props.activeDisk}
-
-                />
-                
+                                
             </div>
 
         );
     }
 
     //Обработка нажатия клавиш
-
-
-
 }
 
 const mapStateToProps = function(state) {
     return {
-
-        //allDisks: allMessages //так делать нельзя, только из стор
-        allDisks: state.AllDisks, //так делать нужно
-        selectedDisk: state.selectedDisk,
+        allDisks: state.AllDisks,
         activeDisk: state.activeDisk,
-        allDirectors: state.AllDirectors,
-        selectedDirector: state.selectedDirector,
-        activeDirector: state.activeDirector
+        allClients: state.AllClients,
+        activeClient: state.activeClient
     };
 };
 

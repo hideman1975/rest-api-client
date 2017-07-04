@@ -1,6 +1,7 @@
-//----экшены для прокатного бюро-------------
+/**
+ * Created by andrey.manaenko on 29.06.2017.
+ */
 export const ADD_DISKS = 'ADD_DISKS';
-
 export function getAllDisksFromBase(AllDisks) {
 
     return {
@@ -10,19 +11,7 @@ export function getAllDisksFromBase(AllDisks) {
     };
 }
 
-export const ADD_DIRECTORS = 'ADD_DIRECTORS';
-
-export function getAllDirectorsFromBase(AllDirectors) {
-
-    return {
-        type: ADD_DIRECTORS,
-        AllDirectors: AllDirectors
-
-    };
-}
-
 export const SELECT_DISK = 'SELECT_DISK';
-
 export function selectDisk(diskId) {
 
     return {
@@ -33,38 +22,13 @@ export function selectDisk(diskId) {
     };
 }
 
-export const SELECT_DIRECTOR = 'SELECT_DIRECTOR';
-
-export function selectDirector(directorId) {
-
-    return {
-
-        type: SELECT_DIRECTOR,
-        directorId: directorId
-
-    };
-}
-
 export const ACTIVE_DISK = 'ACTIVE_DISK';
-
 export function setActiveDisk(disk) {
 
     return {
 
         type: ACTIVE_DISK,
         disk: disk
-
-    };
-}
-
-export const ACTIVE_DIRECTOR = 'ACTIVE_DIRECTOR';
-
-export function setActiveDirector(director) {
-
-    return {
-
-        type: ACTIVE_DIRECTOR,
-        director: director
 
     };
 }
@@ -126,4 +90,3 @@ export function clearDisk(id) {
 
     };
 }
-

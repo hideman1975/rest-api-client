@@ -1,5 +1,5 @@
 //require("!style!css!./style.css");
-import {getAllDisksFromBase} from './actions/clientsActions';
+import {getAllDisksFromBase} from './actions/diskActions';
 import store from './store';
 
 //var messages = [];
@@ -75,6 +75,25 @@ export function getDisksByDirector(id) {
     return messages;
 }
 
+export function getDisksByClient(id) {
+
+    var messages = [];
+    var oXmlHttp = createXMLHttp();
+    var url = "http://manaenko:9999/rest-api_03/resources/disks/client_id/"+id;
+    oXmlHttp.open("GET", url, false);
+    oXmlHttp.setRequestHeader("Content-Type", "text/plain");
+    // описание функции, которая будет вызвана, когда придет ответ от сервера
+    oXmlHttp.onreadystatechange = function() {
+
+        if (oXmlHttp.readyState == 4 && oXmlHttp.status == 200) {
+            messages = JSON.parse(oXmlHttp.responseText);
+        }
+    };
+
+    oXmlHttp.send();
+    return messages;
+}
+
 export function deleteDisk(id) {
 
     var messages = [];
@@ -136,6 +155,25 @@ export function getAllDirectors() {
     var messages = [];
     var oXmlHttp = createXMLHttp();
     var url = "http://manaenko:9999/rest-api_03/resources/director/alljson";
+    oXmlHttp.open("GET", url, false);
+    oXmlHttp.setRequestHeader("Content-Type", "text/plain");
+    // описание функции, которая будет вызвана, когда придет ответ от сервера
+    oXmlHttp.onreadystatechange = function() {
+
+        if (oXmlHttp.readyState == 4 && oXmlHttp.status == 200) {
+            messages = JSON.parse(oXmlHttp.responseText);
+        }
+    };
+
+    oXmlHttp.send();
+    return messages;
+}
+
+export function getAllClients() {
+
+    var messages = [];
+    var oXmlHttp = createXMLHttp();
+    var url = "http://manaenko:9999/rest-api_03/resources/client/alljson";
     oXmlHttp.open("GET", url, false);
     oXmlHttp.setRequestHeader("Content-Type", "text/plain");
     // описание функции, которая будет вызвана, когда придет ответ от сервера

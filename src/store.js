@@ -11,16 +11,15 @@ import reducers from './reducers/index';
 
 var initialState = {
     AllDisks: [],
-    selectedDisk: 0,
     activeDisk: null,
-    AllDirectors:[],
-    selectedDirector: 0,
-    activeDirector: null
-        
+    AllClients:[],
+    activeClient: null
+
 
 };
 const middleware = applyMiddleware(promise(), thunk, logger());
 
 var store = createStore(reducers, initialState, middleware);
+
 
 export default store;

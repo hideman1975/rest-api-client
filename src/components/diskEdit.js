@@ -3,15 +3,15 @@
  */
 import React from 'react';
 import store from '../store';
-import {selectDisk} from '../actions/clientsActions';
-import {setActiveDisk} from '../actions/clientsActions';
-import {editTitle} from '../actions/clientsActions';
-import {editGenre} from '../actions/clientsActions';
-import {editYear} from '../actions/clientsActions';
-import {clearDisk} from '../actions/clientsActions';
+import {selectDisk} from '../actions/diskActions';
+//import {setActiveDisk} from '../actions/diskActions';
+import {editTitle} from '../actions/diskActions';
+import {editGenre} from '../actions/diskActions';
+import {editYear} from '../actions/diskActions';
+import {clearDisk} from '../actions/diskActions';
 import {saveDisk} from '../ajaxCommander';
 import {deleteDisk} from '../ajaxCommander';
-import {getAllDisksFromBase} from '../actions/clientsActions';
+//import {getAllDisksFromBase} from '../actions/diskActions';
 export default class DiskEdit extends React.Component {
 
     constructor(props) {
@@ -82,7 +82,7 @@ export default class DiskEdit extends React.Component {
 
         return(
 
-            <div className="editbox">
+            <div className="editbox" id="diskbox">
                 <h3>Тип операции: {"Редактируем"}</h3>
                 <h4>ID: {this.props.activeDisk.id}</h4>
                 <h4>Название: <input id="title" type="text"  onChange={this.titleChange.bind(this)} size="40" value = {this.props.activeDisk.title}/></h4><br/>

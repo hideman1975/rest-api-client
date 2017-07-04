@@ -3,9 +3,9 @@
  */
 import React from 'react';
 import store from '../store';
-import {selectDirector} from '../actions/clientsActions';
-import {setActiveDirector} from '../actions/clientsActions';
-import {getAllDisksFromBase} from '../actions/clientsActions';
+import {selectDirector} from '../actions/directorActions';
+import {setActiveDirector} from '../actions/directorActions';
+import {getAllDisksFromBase} from '../actions/diskActions';
 import {getDisksByDirector} from '../ajaxCommander';
 
 export default class Director extends React.Component{

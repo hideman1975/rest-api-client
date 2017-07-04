@@ -3,8 +3,8 @@
  */
 import React from 'react';
 import store from '../store';
-import {selectDisk} from '../actions/clientsActions';
-import {setActiveDisk} from '../actions/clientsActions';
+import {selectDisk} from '../actions/diskActions';
+import {setActiveDisk} from '../actions/diskActions';
 
 
 export default class Disk extends React.Component{
@@ -23,7 +23,7 @@ export default class Disk extends React.Component{
     clickMeTender(){
     console.log("Ткнули в диск-", this.props.index);
     store.dispatch(setActiveDisk(this.props.disk));
-    store.dispatch(selectDisk(this.props.index));
+    //store.dispatch(selectDisk(this.props.index));
         //var i = store.getState()["selectedDisk"]; //делаем сдвиг индекса
         //store.dispatch(setActiveDisk(store.getState()["AllDisks"][i]));
     }

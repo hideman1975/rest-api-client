@@ -1,18 +1,15 @@
 /**
- * Created by andrey.manaenko on 21.03.2017.
+ * Created by andrey.manaenko on 30.06.2017.
  */
 import React from 'react';
-import {editClient} from '../actions/clientsActions';
-import {editClientForm} from '../actions/clientsActions';
-import {editPaspSer} from '../actions/clientsActions';
-import {editPaspNum} from '../actions/clientsActions';
-import {editBirthDate} from '../actions/clientsActions';
-import {changeOperType} from '../actions/clientsActions';
-
 import store from '../store';
+import {selectClient} from '../actions/clientActions';
+import {setActiveClient} from '../actions/clientActions';
+import {getAllDisksFromBase} from '../actions/diskActions';
+import {getDisksByClient} from '../ajaxCommander';
+
 export default class Client extends React.Component{
 
-//var cliThis ;
     constructor(props) {
         super();
     }
@@ -25,36 +22,35 @@ export default class Client extends React.Component{
 
 // При выборе клиента в списке меняем в Сторе форму редактирования
     clickMeTender(){
-        store.dispatch(changeOperType("редактируем клиента"));
+        //console.log("Ткнули в клиента-", this.props.index);
+        store.dispatch(setActiveClient(this.props.client));
+        //store.dispatch(selectDirector(this.props.index));
 
-        store.dispatch(editClient(Number(this.props.client.id)));
-        store.dispatch(editClientForm(this.props.client.fio));
-        store.dispatch(editPaspSer(this.props.client.pasp_ser));
-        store.dispatch(editPaspNum(this.props.client.pasp_num));
-        store.dispatch(editBirthDate(this.props.client.birth_date));
+        var filteredDisks = getDisksByClient(this.props.client.id);
+        //setTimeout(function (){console.log("filteredDisks",filteredDisks.length)}, 100);
+        store.dispatch(getAllDisksFromBase(filteredDisks));
+
+        //var i = store.getState()["selectedDirector"]; //делаем сдвиг индекса
+        //store.dispatch(setActiveDirector(store.getState()["AllDirectors"][i]));
     }
 
 
 
-
     render(){
-        var SelevtedName = "selected";
-        var UnselectedName = "tab";
         var ClassName;
-        if(this.props.client.id == this.props.editClient){
+        if(this.props.client.id == store.getState()["activeClient"].id){
             ClassName = "selected";
         } else  ClassName = "tab";
 
         return(
 
-                <tr className={ClassName} onClick={this.clickMeTender.bind(this)}>
-                    
-                    <td>{this.props.client.id}</td>
-                    <td>{this.props.client.fio}</td>
-                    <td>{this.props.client.pasp_ser}</td>
-                    <td>{this.props.client.pasp_num}</td>
+            <tr className={ClassName} onClick={this.clickMeTender.bind(this)}>
 
-                </tr>
+                <td>{this.props.client.id}</td>
+                <td>{this.props.client.fio}</td>
+                <td>{this.props.client.balance}</td>
+                <td>{this.props.client.phone}</td>
+            </tr>
 
         );
     }
