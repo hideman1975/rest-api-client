@@ -1,5 +1,6 @@
 //require("!style!css!./style.css");
-import {getAllDisksFromBase} from './actions/diskActions';
+import {getAllDisksFromBase, storeGetsAllDisks} from './actions/diskActions';
+import {getAllClientsFromBase} from './actions/clientActions';
 import store from './store';
 
 //var messages = [];
@@ -139,14 +140,67 @@ export function saveDisk(id, title, genre, year) {
     oXmlHttp.send(sBody);
 }
 
+
+export function saveClient(id, fio, balance, phone) {
+
+    var url = "http://manaenko:9999/rest-api_03/resources/client/post";
+    var oXmlHttp = createXMLHttp();
+
+    // конкатинируем данные
+    var sBody = "id="+id+"&fio="+fio+"&balance="+balance+"&phone="+phone;
+    // подготовка, объявление заголовков
+    oXmlHttp.open("POST", url, true);
+
+    oXmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    // описание функции, которая будет вызвана, когда придет ответ от сервера
+    oXmlHttp.onreadystatechange = function() {
+        if (oXmlHttp.readyState == 4 && oXmlHttp.status == 200) {
+            var return_data = oXmlHttp.responseText;
+            console.log("Ответ пришёл", return_data);
+            reloadClients();
+        }
+    };
+    // отправка запроса, sBody - строка данных с формы
+    oXmlHttp.send(sBody);
+}
+
+export function deleteClient(id) {
+
+    var messages = [];
+    var oXmlHttp = createXMLHttp();
+    var url = "http://manaenko:9999/rest-api_03/resources/client/deleteclient/"+id;
+    oXmlHttp.open("GET", url, false);
+    oXmlHttp.setRequestHeader("Content-Type", "text/plain");
+    // описание функции, которая будет вызвана, когда придет ответ от сервера
+    oXmlHttp.onreadystatechange = function() {
+
+        if (oXmlHttp.readyState == 4 && oXmlHttp.status == 200) {
+            console.log("Клиент с айдишником удалён", id);
+            reloadClients();
+        }
+    };
+
+    oXmlHttp.send();
+
+}
+
 function reloadDisks(){
 
-        var allDisks = getAllDisks();
+    var idClient = store.getState()["activeClient"].id;
+    var allDisks = getDisksByClient(idClient);
+    var vseDisks = getAllDisks();
         //Берём данные из базы и сохраняем в store
     store.dispatch(getAllDisksFromBase(allDisks));
-        //store.dispatch(changeOperType("выбрать клиента"));
+    store.dispatch(storeGetsAllDisks(vseDisks));
     }
 
+function reloadClients(){
+
+    var allClients = getAllClients();
+    //Берём данные из базы и сохраняем в store
+    store.dispatch(getAllClientsFromBase(allClients));
+
+}
 
 //Теперь директор! Я сказал Директор!
 

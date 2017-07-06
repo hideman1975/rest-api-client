@@ -16,9 +16,9 @@ export default class ClientList extends React.Component{
 
     renderList()
     {
-        var AllClients = [];
+        var allClients = [];
         var Index = 0;
-        AllClients = this.props.AllClients;
+        allClients = this.props.allClients;
 
         return   <table className="table">
             <caption>Клиенты</caption>
@@ -27,7 +27,7 @@ export default class ClientList extends React.Component{
                 <th>ID</th><th>Имя</th><th>Баланс</th><th>Телефон</th>
             </tr>
 
-            {AllClients.map((msg) =>
+            {allClients.map((msg) =>
                 <Client key = {msg.id} client={msg} index={Index++}/>)}
             </tbody>
         </table>
@@ -39,10 +39,7 @@ export default class ClientList extends React.Component{
 
             <div className="clientField">
                 {this.renderList()}
-                <ClientEdit activeClient={this.props.activeClient}
-                            allDisks={this.props.allDisks}
-                            activeDisk = {this.props.activeDisk}
-                />
+                
             </div>
 
         );

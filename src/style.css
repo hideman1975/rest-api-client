@@ -27,7 +27,11 @@ td {
     padding: 5px; /* Поля вокруг текста */
 
 }
-
+.diskPage{
+    background: #d7e83c;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
 .diskList{
     width: 90%;
     background: #e84bb2;
@@ -76,28 +80,32 @@ body {
 
 .mainmenu{
     background: #0099FF;
-    width: 94%;
+    width: 98%;
     margin-left: 10px;
-	height: 60px;
+	height: 40px;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .menuitem{
 
-    width: 18%;
-    height: 90%;
+    width: 19%;
+    height: 40px;
     float: left;
     display: inline-block;
     cursor: pointer;
+    border:1px solid #100fa9;
 }
 
 .menuitemActive{
 
-    width: 18%;
-    height: 90%;
+    width: 19%;
+    height: 40px;
     float: left;
     display: inline-block;
     cursor: default;  /* устанавливаем курсор в виде стрелки */
     background: rgba(0,0,0,.3);
+    border:1px solid #100fa9;
 
 }
 
@@ -119,68 +127,7 @@ body {
     background: rgba(0,0,0,.3);
 
 }
-.menuitem:hover::after {
-    content: attr(data-title);
-    position: absolute; /* Абсолютное позиционирование */
-    /*left: 20%; top: 30%; !* Положение подсказки *!*/
-    z-index: 1; /* Отображаем подсказку поверх других элементов */
-    background: rgba(255,255,230,0.9); /* Полупрозрачный цвет фона */
-    font-family: Arial, sans-serif; /* Гарнитура шрифта */
-    font-size: 11px; /* Размер текста подсказки */
-    padding: 5px 10px; /* Поля */
-    border: 1px solid #333; /* Параметры рамки */
-}
 
-.menuitemActive:hover::after {
-    content: attr(data-title);
-    position: absolute; /* Абсолютное позиционирование */
-    /*left: 20%; top: 30%; !* Положение подсказки *!*/
-    z-index: 1; /* Отображаем подсказку поверх других элементов */
-    background: rgba(255,255,230,0.9); /* Полупрозрачный цвет фона */
-    font-family: Arial, sans-serif; /* Гарнитура шрифта */
-    font-size: 11px; /* Размер текста подсказки */
-    padding: 5px 10px; /* Поля */
-    border: 1px solid #333; /* Параметры рамки */
-}
-
-
-.week {
-   margin-left: 10px;
-   font-size: 14px;
-   width: 100%;
-}
-
-.blog{
-    border:1px solid #000;
-    margin-left: 20px;
-    margin-top: 20px;
-	margin-right: 20px;
-    padding: 10px;
-	max-width: 600px;
-	font-size: 1.2em;
-    background-color: #7de880;
-}
-
-
-.contacts{
-    border:1px solid #000;
-    width: 90%;
-    background-color: #7de880;
-    margin-left: 20px;
-    margin-top: 20px;
-	margin-right: 20px;
-    padding: 10px;
-}
-
-.news{
-    border:1px solid #000;
-    width: 90%;
-    background-color: #7de880;
-    margin-left: 20px;
-    margin-top: 20px;
-	margin-right: 20px;
-    padding: 10px;
-}
 
 .fotos{
     border:1px solid #000;
@@ -199,16 +146,6 @@ body {
 
 }
 
-.caruselControl{
-    float: left;
-    height: 370px;
-    width: 35px;
-    background-color: #7de880;
-    display: inline-block;
-    vertical-align: top;
-    border-radius: 11px;
-    cursor: pointer;
-}
 
 .arrow{
     width: 20px;

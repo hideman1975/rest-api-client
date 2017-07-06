@@ -4,12 +4,11 @@
 import React from 'react';
 import store from '../store';
 import DisksList from './disksList';
-import {selectDisk} from '../actions/diskActions';
-//import {setActiveDisk} from '../actions/diskActions';
+import {clearClient, selectClient} from '../actions/clientActions';
 import {editFIO, editPhone, editBalance} from '../actions/clientActions';
-import {saveDisk} from '../ajaxCommander';
-import {deleteClient} from '../ajaxCommander';
-//import {getAllDisksFromBase} from '../actions/diskActions';
+import {saveClient, deleteClient} from '../ajaxCommander';
+
+
 
 export default class ClientEdit extends React.Component {
 
@@ -22,32 +21,32 @@ export default class ClientEdit extends React.Component {
 
     }
 
-    saveDisk(){
+    saveClient(){
         //console.log("Сохранить диск ID -",this.props.activeDisk.title);
-        saveDisk(
+        saveClient(
             this.props.activeClient.id,
             this.props.activeClient.fio,
             this.props.activeClient.balance,
             this.props.activeClient.phone);
     }
 
-    deleteDisk(){
-        //console.log("Удалить диск");
+    deleteClient(){
+
         deleteClient(this.props.activeClient.id);
         store.dispatch(clearClient(0));
         store.dispatch(selectClient(null));
 
     }
 
-    clearDisk(){
+    clearClient(){
         store.dispatch(clearClient(this.props.activeClient.id));
     }
 
-    newDisk(){
-        //console.log("Создать диск");
+    newClient(){
+
         store.dispatch(clearClient(0));
         store.dispatch(selectClient(null));
-        //store.dispatch(setActiveDisk(null));
+
     }
 
     //____Блок изменения в полях ввода _________
@@ -90,15 +89,16 @@ export default class ClientEdit extends React.Component {
                 <h4>Телефон:<input id="phone" type="text" onChange={this.phoneChange.bind(this)} size="40" value = {this.props.activeClient.phone}/></h4><br/>
                 <h4>Адрес :<input id="address" type="text" onChange={this.addressChange.bind(this)} size="10" value= {"Нижний Новгород"}/></h4><br/>
                 <p>
-                    <button onClick={this.saveDisk.bind(this)} >Сохранить</button>
-                    <button onClick={this.clearDisk.bind(this)} >Очистить</button>
-                    <button onClick={this.newDisk.bind(this)} >Создать</button>
-                    <button onClick={this.deleteDisk.bind(this)} >Удалить</button>
+                    <button onClick={this.saveClient.bind(this)} >Сохранить</button>
+                    <button onClick={this.clearClient.bind(this)} >Очистить</button>
+                    <button onClick={this.newClient.bind(this)} >Создать</button>
+                    <button onClick={this.deleteClient.bind(this)} >Удалить</button>
                 </p>
                     </div>
                 <div>
                 <DisksList AllDisks={this.props.allDisks}
                            activeDisk = {this.props.activeDisk}
+                           activeClient = {this.props.activeClient}
                 />
                 </div>
             </div>

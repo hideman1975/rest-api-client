@@ -11,6 +11,27 @@ export function getAllDisksFromBase(AllDisks) {
     };
 }
 
+export const STORE_GETS_ALLDISKS = 'STORE_GETS_ALLDISKS';
+export function storeGetsAllDisks(DisksArray) {
+
+    return {
+        type: STORE_GETS_ALLDISKS,
+        DisksArray: DisksArray
+
+    };
+}
+
+
+export const GET_DISKS = 'GET_DISKS';
+export function getDisksByClient(ClientDisks) {
+
+    return {
+        type: GET_DISKS,
+        ClientDisks: ClientDisks
+
+    };
+}
+
 export const SELECT_DISK = 'SELECT_DISK';
 export function selectDisk(diskId) {
 

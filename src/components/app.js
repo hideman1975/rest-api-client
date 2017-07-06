@@ -1,15 +1,19 @@
 
 import React from 'react';
-import DisksList from './disksList';
+import MenuLine from './menuLine';
 import ClientList from './clientList';
+import DiskPage from './diskPage';
+import ClientPage from './clientPage';
+import OrderPage from './orderPage';
 import store from '../store';
 import { connect } from 'react-redux';
 
 import {getAllClientsFromBase, setActiveClient} from '../actions/clientActions';
-import {getDisksByClient, getAllClients} from '../ajaxCommander';
-import {selectDisk, setActiveDisk, getAllDisksFromBase} from '../actions/diskActions';
+import {getDisksByClient, getAllClients, getAllDisks} from '../ajaxCommander';
+import {selectDisk, setActiveDisk, getAllDisksFromBase, storeGetsAllDisks} from '../actions/diskActions';
 
 const filteredDisks = getDisksByClient(1);
+const allDisks = getAllDisks();
 
 //Инициализация клиентов
 var allClients = getAllClients();
@@ -17,8 +21,11 @@ store.dispatch(getAllClientsFromBase(allClients));
 var activeClient = store.getState()["AllClients"][0];
 store.dispatch(setActiveClient(activeClient));
 
+
 //setTimeout(function (){console.log("filteredDisks",filteredDisks.length)}, 100);
 store.dispatch(getAllDisksFromBase(filteredDisks));
+store.dispatch(storeGetsAllDisks(allDisks));
+
 var activeDisk = store.getState()["AllDisks"][0];
 store.dispatch(setActiveDisk(activeDisk));
 
@@ -28,13 +35,29 @@ class App extends React.Component{
         return(
 
             <div>
-                <h2>Клиенты проката</h2>
-                <ClientList AllClients={this.props.allClients}
+                <h2>Клиенты проката 2</h2>
+                <MenuLine />
+                <ClientPage allClients={this.props.allClients}
                             activeClient = {this.props.activeClient}
                             allDisks={this.props.allDisks}
                             activeDisk = {this.props.activeDisk}
                 />
-                                
+
+
+                    <DiskPage filteredDisks={this.props.filteredDisks}
+                               activeDisk = {this.props.activeDisk}
+                               activeClient = {this.props.activeClient}
+                    />
+
+                <OrderPage allClients={this.props.allClients}
+                           activeClient = {this.props.activeClient}
+                           allDisks={this.props.allDisks}
+                           activeDisk = {this.props.activeDisk}
+                           filteredDisks={this.props.filteredDisks}
+
+
+                    />
+
             </div>
 
         );
@@ -48,7 +71,10 @@ const mapStateToProps = function(state) {
         allDisks: state.AllDisks,
         activeDisk: state.activeDisk,
         allClients: state.AllClients,
-        activeClient: state.activeClient
+        activeClient: state.activeClient,
+        filteredDisks: state.filteredDisks,
+        activePage: state.activePage,
+        order: state.order
     };
 };
 

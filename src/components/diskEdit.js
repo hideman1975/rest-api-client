@@ -26,6 +26,7 @@ export default class DiskEdit extends React.Component {
     saveDisk(){
         console.log("Сохранить диск ID -",this.props.activeDisk.title);
         saveDisk(
+            //this.props.activeClient.id,
             this.props.activeDisk.id,
             this.props.activeDisk.title,
             this.props.activeDisk.genre,

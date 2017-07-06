@@ -68,3 +68,14 @@ export function editPhone(phone, activeClient) {
 
     };
 }
+
+export const CLEAR_CLIENT = 'CLEAR_CLIENT';
+export function clearClient(id) {
+
+    return {
+        id: id,
+        type: CLEAR_CLIENT
+
+    };
+}
+

@@ -1,7 +1,9 @@
+import store from '../store';
 
 export default function index(state, action) {
 //Пишем редьюсеры для Бюро Проката дисков
     if (action.type === 'ADD_DISKS') return {...state, AllDisks: action.AllDisks};
+    if (action.type === 'STORE_GETS_ALLDISKS') return {...state, filteredDisks: action.DisksArray};
     if (action.type === 'ADD_DIRECTORS') return {...state, AllDirectors: action.AllDirectors};
     if (action.type === 'ADD_CLIENTS') return {...state, AllClients: action.AllClients};
 
@@ -41,6 +43,38 @@ export default function index(state, action) {
         return {...state, activeClient: {...action.activeClient, balance: action.balance}};
     if (action.type === 'PHONE_CHANGE')
         return {...state, activeClient: {...action.activeClient, phone: action.phone}};
+    if (action.type === 'CLEAR_CLIENT')
+        return {
+            ...state, activeClient: {
+                ...action.activeClient,
+                id: action.id,
+                fio: "",
+                balance: "",
+                phone: ""
+            }
+        };
 
+    //Работа со страницами
+    if (action.type === 'MENU_CLICK') return {...state, activePage: action.activePage};
+
+    //Работа с заказом
+    if (action.type === 'ADD_DISK_TO_ORDER') {
+        var diskArray = store.getState()["order"]["disks"];
+        diskArray.push(action.disk);
+        return {
+            ...state, order: {client: action.clientId, date: "12.02.2009", disks:  diskArray}
+        };
+
+    }
     return state;
+
+
+
+
+
+
+
+
+
 }
+

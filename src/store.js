@@ -11,9 +11,12 @@ import reducers from './reducers/index';
 
 var initialState = {
     AllDisks: [],
+    filteredDisks: [],
     activeDisk: null,
     AllClients:[],
-    activeClient: null
+    activeClient: null,
+    order: { disks: [], client: null, date: null},
+    activePage: "Клиенты"
 
 
 };

@@ -3,9 +3,9 @@
  */
 import React from 'react';
 import store from '../store';
-import {selectDisk} from '../actions/diskActions';
-import {setActiveDisk} from '../actions/diskActions';
 
+import {setActiveDisk} from '../actions/diskActions';
+import {addDiskToOrder} from '../actions/orderActions';
 
 export default class Disk extends React.Component{
 
@@ -13,21 +13,19 @@ export default class Disk extends React.Component{
         super();
     }
 
-    componentDidMount()
-    {
-        //console.log("client Замаунтился, Ура!",this);
-        
-    }
-    
+
 // При выборе клиента в списке меняем в Сторе форму редактирования
     clickMeTender(){
-    console.log("Ткнули в диск-", this.props.index);
+
     store.dispatch(setActiveDisk(this.props.disk));
-    //store.dispatch(selectDisk(this.props.index));
-        //var i = store.getState()["selectedDisk"]; //делаем сдвиг индекса
-        //store.dispatch(setActiveDisk(store.getState()["AllDisks"][i]));
+
     }
 
+    makeRented(){
+        console.log("Выдать диск", this.props.disk.title);
+        var activeClientId = store.getState()["activeClient"].id;
+        store.dispatch(addDiskToOrder(this.props.disk, activeClientId));
+    }
 
 
     render(){
@@ -44,7 +42,7 @@ export default class Disk extends React.Component{
                 <td>{this.props.disk.genre}</td>
                 <td>{this.props.disk.title}</td>
                 <td>{this.props.disk.year}</td>
-
+                <td><button onClick={this.makeRented.bind(this)}>Выдать</button></td>
             </tr>
 
         );
