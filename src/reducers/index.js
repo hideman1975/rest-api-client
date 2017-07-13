@@ -62,11 +62,34 @@ export default function index(state, action) {
         var diskArray = store.getState()["order"]["disks"];
         diskArray.push(action.disk);
         return {
-            ...state, order: {client: action.clientId, date: "12.02.2009", disks:  diskArray}
+            ...state, order: {client: action.clientId, date: "12.02.2009", disks: diskArray}
         };
 
     }
-    return state;
+        if (action.type === 'REMOVE_DISK_FROM_ORDER') {
+            var diskArr = store.getState()["order"]["disks"];
+            var index = diskArr.indexOf(action.disk);
+            if (index >= 0) {
+                diskArr.splice( index, 1 );
+            }
+
+            return {
+                ...state, order: {client: action.clientId, date: "12.02.2009", disks: diskArr}
+            };
+
+        }
+
+    if (action.type === 'CLEAR_ORDER') {
+
+        return {
+            ...state, order: {client: action.clientId, date: "12.02.2009", disks: []}
+        };
+
+    }
+
+        return state;
+
+    } //Конец редьюсера. Все экшены описывать выше.
 
 
 
@@ -75,6 +98,4 @@ export default function index(state, action) {
 
 
 
-
-}
 

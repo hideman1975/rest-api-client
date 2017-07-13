@@ -11,31 +11,74 @@ export default class DisksList extends React.Component{
         var AllDisks = [];
         var diskIndex = 0;
         AllDisks = this.props.AllDisks;
-
-        return <table className="table">
-            <caption>Диски проката</caption>
+        
+        return <table className="table listDiv">
+            <caption>Перечень дисков</caption>
                 <tbody>
                 <tr>
-                    <th>&nbsp;</th><th>Жанр</th><th>Название</th><th>Год</th>
+                    <th>ID</th><th>Жанр</th><th>Название</th><th>Год</th><th>Действие</th>
                 </tr>
 
                 {AllDisks.map((msg) =>
-                    <Disk key = {msg.id} disk={msg} index={diskIndex++} />)}
+                    <Disk key = {msg.id}
+                          disk={msg}
+                          index={diskIndex++}
+                          place={this.props.place}/>)}
                 </tbody>
             </table>
 
 
 
     }
+
+    renderFreeDisksList()
+    {
+        var AllDisks = [];
+        var FreeDisks = [];
+        var diskIndex = 0;
+        AllDisks = this.props.AllDisks;
+        for (var i = 0; i<AllDisks.length; i++){
+            if(AllDisks[i].client == 0) FreeDisks.push(AllDisks[i]) ;
+
+        }
+
+        return <table className="table listDiv">
+            <caption>Перечень дисков</caption>
+            <tbody>
+            <tr>
+                <th>ID</th><th>Жанр</th><th>Название</th><th>Год</th><th>Действие</th>
+            </tr>
+
+            {FreeDisks.map((msg) =>
+                <Disk key = {msg.id}
+                      disk={msg}
+                      index={diskIndex++}
+                      place={this.props.place}/>)}
+            </tbody>
+        </table>
+
+
+
+    }
+
     render(){
 
+        if (this.props.place == "orderPage"){
         return(
 
             <div>
-                {this.renderList()}
+                {this.renderFreeDisksList()}
 
             </div>
 
-        );
+        );} else
+            return(
+
+                <div>
+                    {this.renderList()}
+
+                </div>
+
+            );
     }
 }

@@ -4,8 +4,7 @@
 import React from 'react';
 import store from '../store';
 import DisksList from './disksList';
-import ClientList from './clientList';
-
+import OrderEdit from './orderEdit';
 
 
 export default class OrderPage extends React.Component{
@@ -23,17 +22,12 @@ export default class OrderPage extends React.Component{
         return(
 
             <div className={ClassName}>
-                <ClientList
-                    allClients={this.props.allClients}
-                    activeClient = {this.props.activeClient}
-                    allDisks={this.props.allDisks}
-                    activeDisk = {this.props.activeDisk}
-                />
-
+                
                 <DisksList AllDisks={this.props.filteredDisks}
-                           activeDisk = {this.props.activeDisk}
-                           activeClient = {this.props.activeClient}
+                           place = "orderPage"
                 />
+                <OrderEdit order = {this.props.order}
+                            activeClient = {this.props.activeClient}/>
 
             </div>
 

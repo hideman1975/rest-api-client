@@ -26,6 +26,7 @@ export default class DiskPage extends React.Component{
                 <DisksList AllDisks={this.props.filteredDisks}
                            activeDisk = {this.props.activeDisk}
                            activeClient = {this.props.activeClient}
+                           place = "diskPage"
                 />
                 <DiskEdit activeDisk = {this.props.activeDisk}/>
             </div>

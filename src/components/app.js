@@ -15,6 +15,7 @@ import {selectDisk, setActiveDisk, getAllDisksFromBase, storeGetsAllDisks} from 
 const filteredDisks = getDisksByClient(1);
 const allDisks = getAllDisks();
 
+
 //Инициализация клиентов
 var allClients = getAllClients();
 store.dispatch(getAllClientsFromBase(allClients));
@@ -26,7 +27,7 @@ store.dispatch(setActiveClient(activeClient));
 store.dispatch(getAllDisksFromBase(filteredDisks));
 store.dispatch(storeGetsAllDisks(allDisks));
 
-var activeDisk = store.getState()["AllDisks"][0];
+var activeDisk = store.getState()["filteredDisks"][0];
 store.dispatch(setActiveDisk(activeDisk));
 
 class App extends React.Component{
@@ -35,7 +36,7 @@ class App extends React.Component{
         return(
 
             <div>
-                <h2>Клиенты проката 2</h2>
+               
                 <MenuLine />
                 <ClientPage allClients={this.props.allClients}
                             activeClient = {this.props.activeClient}
@@ -54,7 +55,7 @@ class App extends React.Component{
                            allDisks={this.props.allDisks}
                            activeDisk = {this.props.activeDisk}
                            filteredDisks={this.props.filteredDisks}
-
+                           order = {this.props.order}
 
                     />
 

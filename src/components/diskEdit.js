@@ -4,7 +4,6 @@
 import React from 'react';
 import store from '../store';
 import {selectDisk} from '../actions/diskActions';
-//import {setActiveDisk} from '../actions/diskActions';
 import {editTitle} from '../actions/diskActions';
 import {editGenre} from '../actions/diskActions';
 import {editYear} from '../actions/diskActions';
@@ -25,12 +24,14 @@ export default class DiskEdit extends React.Component {
 
     saveDisk(){
         console.log("Сохранить диск ID -",this.props.activeDisk.title);
+
         saveDisk(
             //this.props.activeClient.id,
             this.props.activeDisk.id,
             this.props.activeDisk.title,
             this.props.activeDisk.genre,
-            this.props.activeDisk.year);
+            this.props.activeDisk.year,
+            this.props.activeDisk.client);
     }
 
     deleteDisk(){
@@ -107,18 +108,3 @@ export default class DiskEdit extends React.Component {
 
 }
 
-//saveOldDisk(){
-    //var url = "./php/editclient.php";
-    //if(this.props.editClient) {
-      //  if(this.props.formFio!="" && this.props.pasp_ser!="" && this.props.pasp_num!="" && this.props.birth_date!=""){
-        //    postAjax(this.props.editClient, this.props.formFio,
-          //      this.props.pasp_ser, this.props.pasp_num, this.props.birth_date, url);
-        //} else {
-          //  alert("Заполните данные клиента !");
-        //}
-    //} else {
-      //  alert("Выберите клиента !");
-    //}
-//console.log("Сохраним диск");
-
-//}

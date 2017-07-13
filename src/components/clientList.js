@@ -3,16 +3,10 @@
  */
 import React from 'react';
 import Client from './client';
-import ClientEdit from './clientEdit';
+
 
 
 export default class ClientList extends React.Component{
-
-    componentDidMount()
-    {
-        console.log("ClientList Замаунтился, Ура!",this);
-
-    }
 
     renderList()
     {
@@ -20,7 +14,7 @@ export default class ClientList extends React.Component{
         var Index = 0;
         allClients = this.props.allClients;
 
-        return   <table className="table">
+        return   <table className="table listDiv">
             <caption>Клиенты</caption>
             <tbody>
             <tr>
@@ -37,11 +31,9 @@ export default class ClientList extends React.Component{
 
         return(
 
-            <div className="clientField">
+            <div>
                 {this.renderList()}
-                
-            </div>
-
-        );
+              </div>  
+         );
     }
 }

@@ -116,14 +116,15 @@ export function deleteDisk(id) {
 }
 
 // функция Ajax POST
-export function saveDisk(id, title, genre, year) {
+export function saveDisk(id, title, genre, year, client) {
     // создаем Объект
     console.log("из postAjax");
+    if (client == undefined) client = 0;
     var url = "http://manaenko:9999/rest-api_03/resources/disks/post";
     var oXmlHttp = createXMLHttp();
 
     // конкатинируем данные
-    var sBody = "id="+id+"&title="+title+"&genre="+genre+"&year="+year;
+    var sBody = "id="+id+"&title="+title+"&genre="+genre+"&year="+year+"&client="+client;
     // подготовка, объявление заголовков
     oXmlHttp.open("POST", url, true);
 
@@ -142,13 +143,16 @@ export function saveDisk(id, title, genre, year) {
 
 
 export function saveClient(id, fio, balance, phone) {
-
+    console.log("Сохранить клиенту телефон -",phone);
     var url = "http://manaenko:9999/rest-api_03/resources/client/post";
     var oXmlHttp = createXMLHttp();
 
     // конкатинируем данные
-    var sBody = "id="+id+"&fio="+fio+"&balance="+balance+"&phone="+phone;
+    var sBody = "id="+id+"&fio="+encodeURIComponent(fio)+"&balance="+balance+"&phone="+encodeURIComponent(phone);
     // подготовка, объявление заголовков
+    console.log("Сконкатинировали запрос -",sBody);
+    var res = encodeURIComponent(sBody);
+    console.log("Обработан инкодом -",res);
     oXmlHttp.open("POST", url, true);
 
     oXmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -240,4 +244,9 @@ export function getAllClients() {
 
     oXmlHttp.send();
     return messages;
+}
+
+export function saveOrderToBase(order){
+    var orderDisks = order.disks;
+    orderDisks.map((msg) => saveDisk(msg.id, msg.title, msg.genre, msg.year, order.client));
 }

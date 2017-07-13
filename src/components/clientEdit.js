@@ -82,7 +82,7 @@ export default class ClientEdit extends React.Component {
 
             <div id="clientbox">
                 <div className="editbox">
-                <h3>Тип операции: {"Редактируем"}</h3>
+                <h3>Карточка клиента</h3>
                 <h4>ID: {this.props.activeClient.id}</h4>
                 <h4>Имя : <input id="fio" type="text"  onChange={this.FIOChange.bind(this)} size="40" value = {this.props.activeClient.fio}/></h4><br/>
                 <h4>Баланс:<input id="balance" type="text" onChange={this.balanceChange.bind(this)} size="20" value = {this.props.activeClient.balance}/></h4><br/>
@@ -96,9 +96,11 @@ export default class ClientEdit extends React.Component {
                 </p>
                     </div>
                 <div>
+                    <h3>Выдано клиенту</h3>
                 <DisksList AllDisks={this.props.allDisks}
                            activeDisk = {this.props.activeDisk}
                            activeClient = {this.props.activeClient}
+                           place = "clientEdit"
                 />
                 </div>
             </div>

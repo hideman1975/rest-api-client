@@ -6,6 +6,7 @@ import store from '../store';
 
 import {setActiveDisk} from '../actions/diskActions';
 import {addDiskToOrder} from '../actions/orderActions';
+import {AddToOrder, RemoveFromDiskList, RemoveFromOrder, RemoveFromClient} from './diskListButtons';
 
 export default class Disk extends React.Component{
 
@@ -29,9 +30,16 @@ export default class Disk extends React.Component{
 
 
     render(){
-        var ClassName;
+        var ClassName, Mybutton;
+        if (this.props.place === "orderEdit") Mybutton = <RemoveFromOrder disk = {this.props.disk}/>;
+        if (this.props.place === "diskPage") Mybutton = <RemoveFromDiskList disk = {this.props.disk}/>;
+        if (this.props.place === "orderPage") Mybutton = <AddToOrder disk = {this.props.disk}/>;
+        if (this.props.place === "clientEdit") Mybutton = <RemoveFromClient disk = {this.props.disk}/>;
+
         if(this.props.disk.id == store.getState()["activeDisk"].id){
                 ClassName = "selected";
+        } else if(this.props.disk.client == 0){
+            ClassName = "diskFree";
         } else  ClassName = "tab";
 
         return(
@@ -42,7 +50,8 @@ export default class Disk extends React.Component{
                 <td>{this.props.disk.genre}</td>
                 <td>{this.props.disk.title}</td>
                 <td>{this.props.disk.year}</td>
-                <td><button onClick={this.makeRented.bind(this)}>Выдать</button></td>
+                <td>{Mybutton}</td>
+                
             </tr>
 
         );

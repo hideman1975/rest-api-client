@@ -11,3 +11,26 @@ export function addDiskToOrder(disk, clientId) {
 
     };
 }
+
+export const REMOVE_DISK_FROM_ORDER = 'REMOVE_DISK_FROM_ORDER';
+export function removeDiskFromOrder(disk, clientId) {
+
+    return {
+        type: REMOVE_DISK_FROM_ORDER,
+        disk: disk,
+        clientId: clientId
+        
+        
+    };
+}
+
+export const CLEAR_ORDER = 'CLEAR_ORDER';
+export function clearOrder(clientId) {
+
+    return {
+        type: CLEAR_ORDER,
+        clientId: clientId
+
+
+    };
+}
