@@ -31,16 +31,19 @@ export default class Disk extends React.Component{
 
     render(){
         var ClassName, Mybutton;
+        ClassName = "tab";
         if (this.props.place === "orderEdit") Mybutton = <RemoveFromOrder disk = {this.props.disk}/>;
         if (this.props.place === "diskPage") Mybutton = <RemoveFromDiskList disk = {this.props.disk}/>;
         if (this.props.place === "orderPage") Mybutton = <AddToOrder disk = {this.props.disk}/>;
         if (this.props.place === "clientEdit") Mybutton = <RemoveFromClient disk = {this.props.disk}/>;
 
-        if(this.props.disk.id == store.getState()["activeDisk"].id){
+        if(this.props.place != "clientEdit") {
+            if (this.props.disk.id == store.getState()["activeDisk"].id) {
                 ClassName = "selected";
-        } else if(this.props.disk.client == 0){
-            ClassName = "diskFree";
-        } else  ClassName = "tab";
+            } else if (this.props.disk.client == 0) {
+                ClassName = "diskFree";
+            } else  ClassName = "tab";
+        }
 
         return(
 

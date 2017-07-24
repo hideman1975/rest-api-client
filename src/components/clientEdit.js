@@ -77,7 +77,11 @@ export default class ClientEdit extends React.Component {
     //___________________________________________
 
     render(){
-
+        var delButton;
+        if (this.props.allDisks.length > 0)
+        delButton = <button onClick={this.deleteClient.bind(this)} disabled="disabled" >Удалить</button>;
+        else
+            delButton = <button onClick={this.deleteClient.bind(this)}>Удалить</button>;
         return(
 
             <div id="clientbox">
@@ -92,7 +96,7 @@ export default class ClientEdit extends React.Component {
                     <button onClick={this.saveClient.bind(this)} >Сохранить</button>
                     <button onClick={this.clearClient.bind(this)} >Очистить</button>
                     <button onClick={this.newClient.bind(this)} >Создать</button>
-                    <button onClick={this.deleteClient.bind(this)} >Удалить</button>
+                    {delButton}
                 </p>
                     </div>
                 <div>
